@@ -1,35 +1,91 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Component, useState } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+// function FunctionApp () {
+//   const [counter, setCounter] = useState(0);
+//   return(
+//   <>
+//   <Count counter={counter} hello={"hello"} array={[1, 2, 3, "안녕하세요"]}/>
+//   <button 
+//     onClick={() => {
+//       setCounter((prev) => prev + 3);
+//       }}
+//     >
+//       +
+//     </button>
+//     <button 
+//     onClick={() => {
+//       setCounter((prev) => prev - 3);
+//       }}
+//     >
+//       -
+//     </button>
+//   </> 
+//   );
+// }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// function Count({array, counter, hello}) {
+//   console.log('array', array);
+//   console.log('counter', counter);
+//   console.log('hello', hello);
+
+//   return <div>counter : {counter}</div>;
+// }
+
+// function App() {
+//   const [counter, setCounter] = useState(0)
+//   return (
+//   <>
+//     <div>counter : {counter}</div>
+//     <button 
+//     onClick={() => {
+//       setCounter((prev) => prev + 1);
+//       }}
+//     >
+//       +
+//     </button>
+//     <button 
+//     onClick={() => {
+//       setCounter((prev) => prev - 1);
+//       }}
+//     >
+//       -
+//     </button>
+//   </>
+//   );
+// }
+
+class ClassApp extends Component {
+  state = { counter: 1 }
+    render(){
+      return (
+      <>
+      <Count counter={this.state.counter} />
+      <button 
+      onClick={() => this.setState ({counter: this.state.counter + 1})}
+      >
+        +
+      </button>
+      <button
+      onClick={() => this.setState ({counter: this.state.counter - 1})}
+      >
+        -
+      </button>
+      </>
+      );
+    }
 }
 
-export default App
+class Count extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return <div>counter : {this.props.counter}</div>;
+  }
+}
+
+
+// export default FunctionApp
+export default ClassApp;
