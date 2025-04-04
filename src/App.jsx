@@ -3,6 +3,7 @@ import './App.css';
 
 function FunctionApp () {
   const [counter, setCounter] = useState(0);
+  const [inputValue, setInputValue] = useState(2);
 
   const incrementCounter = () => {
     setCounter(counter + 1)
@@ -12,16 +13,45 @@ function FunctionApp () {
     setCounter(counter - 1)
   }
 
+  const setCounterNumber = () => {
+    setCounter(inputValue);
+  }
+
   return(
     <>
       <Count counter={counter} />
-      <PlusButton setCounter={setCounter} incrementCounter={incrementCounter}/>
-      <MinusButton setCounter={setCounter} decrementCounter={decrementCounter}/>
+      <PlusButton 
+      setCounter={setCounter} 
+      incrementCounter={incrementCounter}
+      />
+      <MinusButton s
+      etCounter={setCounter} 
+      decrementCounter={decrementCounter}
+      />
+      <CounterInput 
+      inputValue={inputValue} 
+      setInputValue={setInputValue} 
+      setCounterNumber={setCounterNumber} 
+      />
     </> 
   );
 }
 
-function PlusButton({setCounter, incrementCounter}) {
+function CounterInput({inputValue, setInputValue, setCounter}) {
+  return (
+    <>
+      <input
+        type="number" 
+        value={inputValue} 
+        onChange={(event) => 
+        setInputValue(event.target.value)}
+      />
+      <button onClick={setCounterNumber}>입력</button>
+    </>
+  );
+}
+
+function PlusButton({setCounter, incrementCounter, }) {
   return <button onClick={incrementCounter}>+</button>;
 }
 
