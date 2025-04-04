@@ -1,112 +1,34 @@
-import { Component, useState } from 'react';
 import './App.css';
-
-function FunctionApp () {
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState(2);
-
-  const incrementCounter = () => {
-    setCounter(counter + 1)
-  }
-
-  const decrementCounter = () => {
-    setCounter(counter - 1)
-  }
-
-  const setCounterNumber = () => {
-    setCounter(inputValue);
-  }
-
-  return(
-    <>
-      <Count counter={counter} />
-      <PlusButton 
-      setCounter={setCounter} 
-      incrementCounter={incrementCounter}
-      />
-      <MinusButton s
-      etCounter={setCounter} 
-      decrementCounter={decrementCounter}
-      />
-      <CounterInput 
-      inputValue={inputValue} 
-      setInputValue={setInputValue} 
-      setCounterNumber={setCounterNumber} 
-      />
-    </> 
-  );
-}
-
-function CounterInput({inputValue, setInputValue, setCounter}) {
+//문제: users 배열 중 거주지가 서울인 사람의 이름과 나이를 화면에 렌더링해주세요.
+const users = [
+  { id: 1, 이름: '홍길동', 나이: 25, 거주지: '서울' },
+  { id: 2, 이름: '김철수', 나이: 30, 거주지: '부산' },
+  { id: 3, 이름: '박영희', 나이: 22, 거주지: '서울' },
+  { id: 4, 이름: '이민호', 나이: 27, 거주지: '대구' },
+  { id: 5, 이름: '최수정', 나이: 29, 거주지: '부산' },
+  { id: 6, 이름: '강호동', 나이: 35, 거주지: '대구' },
+  { id: 7, 이름: '이수진', 나이: 32, 거주지: '인천' },
+  { id: 8, 이름: '장동건', 나이: 28, 거주지: '서울' },
+  { id: 9, 이름: '유재석', 나이: 40, 거주지: '부산' },
+  { id: 10, 이름: '김범수', 나이: 37, 거주지: '인천' },
+];
+function App() {
+  // 요구사항1. users의 배열 중, 거주지가 '서울' 인 사람들만 seoulUsers 배열에 담아주세요.
+  // 아래에 코드를 적어주세요 const seoulUsers = ~
+  const seoulUsers = users.filter((user) => user.거주지 === '서울');
+  // 요구사항2. seoulUsers 배열에 있는 요소들을 화면에 표시해주세요.
+  // 단, 이름: 나이: 이렇게 구분하여 표시되어야합니다.
   return (
     <>
-      <input
-        type="number" 
-        value={inputValue} 
-        onChange={(event) => 
-        setInputValue(event.target.value)}
-      />
-      <button onClick={setCounterNumber}>입력</button>
+      {seoulUsers.map((user) => (
+        <div key={user.id}>
+          <div>이름: {user.이름}</div>
+          <div>나이: {user.나이}</div>
+          <hr />
+        </div>
+      ))}
     </>
   );
 }
 
-function PlusButton({setCounter, incrementCounter, }) {
-  return <button onClick={incrementCounter}>+</button>;
-}
-
-function MinusButton({setCounter, decrementCounter}) {
-  return <button onClick={decrementCounter}>-</button>;
-}
-
-function Count({counter}) {
-  return <div>counter : {counter}</div>;
-}
-
-// class ClassApp extends Component {
-//   state = { counter: 1 };
-
-//   incrementCounter = () => {
-//     this.setState({counter: this.state.counter + 1})
-//   }
-//   decrementCounter = () => {
-//     this.setState({counter: this.state.counter - 1})
-//   }
-
-//     render(){
-//       return (
-//       <>
-//       <Count counter={this.state.counter} />
-//       <PlusButton incrementCounter={this.incrementCounter} />
-//       <MinusButton decrementCounter={this.decrementCounter}/>
-//       </>
-//       );
-//     }
-// }
-
-// class PlusButton extends Component {
-//   render() {
-//     return <button onClick={this.props.incrementCounter}>+
-//     </button>;
-//   }
-// }
-// class MinusButton extends Component {
-//   render() {
-//     return <button onClick={this.props.decrementCounter}>-
-//     </button>;
-//   }
-// }
-
-// class Count extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return <div>counter : {this.props.counter}</div>;
-//   }
-// }
-
-
-export default FunctionApp
-// export default ClassApp;
+export default App;
